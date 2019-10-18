@@ -1,0 +1,43 @@
+需要用到的工具：
+IntellIJ IDEA(破解教程：https://www.cnblogs.com/llfy/p/9591714.html
+                        https://blog.csdn.net/agnesluo/article/details/76804958
+Eclipse，TortoiseSVN,Git,TortoiseGIt(代理配置完成后还是出错设置SSH为:C:\Program Files\Git\bin\sh.exe)
+JDK(下载Openjdk,并配置环境变量，例如：新建：JAVA_HOME常量设置为JDK的路径，并在Path中加入%JAVA_HOME%\jre\bin;)
+Gradle,maven(在默认位置配置代理)
+MySQL,MySQLWorkbenth(有简洁工具Navicat Premium)
+Redis(Windows安装教程地址https://www.cnblogs.com/jylee/p/9844965.html)
+Notepad++
+
+导入项目：
+编码格式统一(目前用的UTF-8)
+使用Git或者SVN下载代码到本地。
+使用IDEA或者eclipse的import导入，并设置JDK，编码。
+用Gradle或者Maven下载依赖包。
+    出现的问题：代理配置，网络权限，设置不要Work offline，有Auto都选择。
+需要使用的插件：lombok（其它项目可能需要别的，不下载会报错）,eclipes需要下载Yaml。
+需要的设置seting-build-compiler-annotation processors将Enable annotation processing勾选确定。
+使用Gradle中的build-buildDependents构建依赖。
+连接数据库MySQL，运行Redis服务。
+
+注意：
+配置config的时候，注意空格格式，spring中会导致读取不到。
+运行时一定要记得开MySQL。
+运行的时候选择对应的运行按钮，注意相应的设置。
+出现连接超时的时候，检查代理配置，网络权限。都在配置文件里面寻找相应的配置。
+
+UT(测试代码编写)
+先学习Junit教程，在熟悉测试代码的同时了解业务逻辑。
+
+Git使用：先用clone判断账号密码的正确性。新建分支，在本地建仓库后将项目的全部代码pull到新分支，有Add功能，注意切换分支。
+
+Zuul学习路由分配，服务网关（https://www.iteye.com/blog/huan1993-2424676）
+Eurrka（https://www.cnblogs.com/carrychan/p/9447256.html
+	https://www.liangzl.com/get-article-detail-20957.html
+Swagger学习（https://blog.csdn.net/lucky373125/article/details/80471525
+	https://blog.csdn.net/haiming157/article/details/80661898
+
+异常处理
+ResponseStatusException exception = assertThrows(ResponseStatusException.class,
+        () -> userController.permissions(GROUP_ID1));
+assertEquals()
+
