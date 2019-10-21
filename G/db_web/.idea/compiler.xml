@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="com.neusoft.common.main" target="1.8" />
+      <module name="com.neusoft.common.test" target="1.8" />
+      <module name="com.neusoft.db_web.main" target="11" />
+      <module name="com.neusoft.db_web.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

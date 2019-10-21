@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off" monitorInterval="60" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <Properties>
+        <Property name="LOG_LEVEL_PATTERN">%-5level</Property>
+        <Property name="LOG_DATEFORMAT_PATTERN">yyyy-MM-dd HH:mm:ss.SSS</Property>
+
+        <Property name="LOG_FORMAT">[${LOG_LEVEL_PATTERN}] %d{${LOG_DATEFORMAT_PATTERN}} [%15.15t] %x %-40.40c{1.} : %m%n</Property>
+
+        <Property name="PATH_LOGFILE">/var/log/suiren/line-sjs.log</Property>
+        <Property name="PATH_LOGFILE_ARCHIVE">/var/log/suiren/line-sjs_%d{yyyy-MM-dd}-%i.log</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>${LOG_FORMAT}</pattern>
+            </PatternLayout>
+        </Console>
+        <RollingFile name="file-output"
+                     fileName="${PATH_LOGFILE}"
+                     filePattern="${PATH_LOGFILE_ARCHIVE}">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout>
+                <pattern>${LOG_FORMAT}</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="file-output"/>
+        </Root>
+        <Logger name="jp.co.fujixerox.suiren.line" level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="file-output"/>
+        </Logger>
+    </Loggers>
+</Configuration>

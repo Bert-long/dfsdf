@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id 'org.hidetake.swagger.generator' version '2.17.0'
+}
+def appName = "DBClient"
+group 'com.neusoft'
+version '1.0-SNAPSHOT'
+apply plugin: 'io.spring.dependency-management'
+sourceCompatibility = 11
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile project(":packages:common")
+    testCompile('org.junit.jupiter:junit-jupiter:5.4.1')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.48'
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    compile "io.springfox:springfox-swagger2:2.9.2"
+    compile "io.springfox:springfox-swagger-ui:2.9.2"
+    swaggerCodegen 'io.swagger.codegen.v3:swagger-codegen-cli:3.0.4'
+    compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0'
+    compile 'org.apache.commons:commons-lang3:3.8.1'
+    compile('org.springframework.boot:spring-boot-starter-log4j2')
+    compile('org.springframework.boot:spring-boot-starter-data-redis')
+    compile 'org.springframework.boot:spring-boot-starter-aop:2.1.1.RELEASE'
+
+
+    compile 'com.alibaba:druid:1.1.10'
+}
+
+configurations {
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}
+
+swaggerSources {
+    sjs {
+        inputFile = file('swagger.yml')
+        code {
+            language = 'spring'
+            configFile = file('swagger.config.json')
+            components = ['models', 'apis']
+        }
+    }
+}
+// make IDE access the generated swagger code.
+compileJava.dependsOn swaggerSources.sjs.code
+sourceSets.main.java.srcDir "${swaggerSources.sjs.code.outputDir}/src/main/java"
+sourceSets.main.resources.srcDir "${swaggerSources.sjs.code.outputDir}/src/main/resources"

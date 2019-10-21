@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  version: '1'
+  title: OPTIONAL DB
+  description: Operation addressUrl
+servers:
+  - url: 'http://10.1.130.210:9001'
+tags:
+  - name: DBManager
+    description: login DB system
+paths:
+  /dbManager/search:
+    get:
+      operationId: search
+      tags:
+        - DBManager
+      description: |
+        search url address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressListDto'
+        '500':
+          description:
+            error 1：login fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  /dbManager/addUrl:
+    post:
+      operationId: addUrl
+      tags:
+        - DBManager
+      description: |
+        add url address
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetryForm'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDto'
+        '500':
+          description:
+            error 1：login fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  /dbManager/updateUrl:
+    post:
+      operationId: updateUrl
+      tags:
+        - DBManager
+      description: |
+        update url address
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetryForm'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDto'
+        '500':
+          description:
+            error 1：login fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  '/dbManager/deleteUrl/{id}':
+    get:
+      operationId: deleteUrl
+      tags:
+        - DBManager
+      description: |
+        delete url address
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDto'
+        '500':
+          description:
+            error 1：login fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+components:
+  schemas:
+    AddressListDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/AddressDtoInner'
+    AddressDtoInner:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id
+        url:
+          type: string
+          description: url address
+    ErrorDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error message
+      required:
+        - code
+        - message
+    EmptyDto:
+      type: object
+    RetryForm:
+      type: object
+      properties:
+        url:
+          type: string
+        id:
+          type: string
+  parameters:
+    IdParam:
+      in: path
+      required: true
+      name: id
+      description: id
+      schema:
+        type: string

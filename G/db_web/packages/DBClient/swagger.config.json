@@ -1,0 +1,12 @@
+{
+  "library": "spring-boot",
+  "dateLibrary": "legacy",
+  "modelPackage": "com.neusoft.ui.bean",
+  "apiPackage": "com.neusoft.ui.api",
+  "useBeanValidation": true,
+  "interfaceOnly": true,
+  "typeMappings" : {
+    "File" : "org.springframework.web.multipart.MultipartFile",
+    "byte[]" : "org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody"
+  }
+}

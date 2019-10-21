@@ -1,0 +1,260 @@
+openapi: 3.0.0
+info:
+  version: '1'
+  title: OPTIONAL DB
+  description: Operation database
+servers:
+  - url: 'http://10.1.130.210:8082'
+tags:
+  - name: DBLoginOrLogoutService
+    description: login or logout DB system
+  - name: DBSearchService
+    description: search db of table
+  - name: DBOptionDataService
+    description:  option table or data
+  - name: DBUrl
+    description: get DB url
+paths:
+  /db/login:
+    post:
+      operationId: login
+      tags:
+        - DBLoginOrLogoutService
+      description: |
+        login DB sysytem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetryForm'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDto'
+        '500':
+          description:
+            error 1：login fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  /searchOption/dbUrl:
+    get:
+      operationId: SearchDBUrl
+      tags:
+        - DBUrl
+      description: |
+        find all url
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UrlListDto'
+        '500':
+          description:
+            error 1：Database does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  /searchOption/searchDB:
+    get:
+      operationId: SearchDB
+      tags:
+        - DBSearchService
+      description: |
+        find all DB
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBListDto'
+        '500':
+          description:
+            error 1：Database does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  "/searchOption/searchTable/{dbName}":
+    get:
+      operationId: SearchDBTable
+      tags:
+        - DBSearchService
+      description: |
+        find all DB of table
+      parameters:
+        - $ref: '#/components/parameters/DBNameParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableListDto'
+        '500':
+          description:
+            error 1：Database does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  /searchOption/searchTableData:
+    post:
+      operationId: SearchDBTableData
+      tags:
+        - DBSearchService
+      description: |
+        find all DB of table data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetryForm'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableDataListDto'
+        '500':
+          description:
+            error 1：There is a problem with the sql statement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  /optionData:
+    post:
+      operationId: optionData
+      tags:
+        - DBOptionDataService
+      description: |
+        option table or data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetryForm'
+      responses:
+        '200':
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDto'
+        '500':
+          description:
+            error 1：There is a problem with the sql statement
+            error 2：Table already exists
+            error 3：incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  /db/logout:
+    get:
+      operationId: logout
+      tags:
+        - DBLoginOrLogoutService
+      description: |
+        logout system
+      responses:
+        '200':
+          description: SUCCCESS
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDto'
+components:
+  schemas:
+    ErrorDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error message
+      required:
+        - code
+        - message
+    EmptyDto:
+      type: object
+    TableListDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/TableListDtoInner'
+    TableListDtoInner:
+      type: object
+      properties:
+        tableDate:
+          type: string
+          description: table name
+    TableDataListDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/TableDataListDtoInner'
+    TableDataListDtoInner:
+      type: object
+      properties:
+        tableColumn:
+          type: string
+          description: column name
+        tableRow:
+          type: object
+          description: row value
+        lineNumber:
+          type: integer
+          description: Number of rows
+    UrlListDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/UrlListDtoInner'
+    UrlListDtoInner:
+      type: object
+      properties:
+        id:
+          type: string
+          description: url id
+        url:
+          type: string
+          description: url name
+    DBListDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/DBListDtoInner'
+    DBListDtoInner:
+      type: object
+      properties:
+        databaseName:
+          type: string
+          description: db name
+    RetryForm:
+      type: object
+      properties:
+        userName:
+          type: string
+        passWord:
+          type: string
+        url:
+          type: string
+        condition:
+          type: string
+  parameters:
+    DBNameParam:
+      in: path
+      name: dbName
+      description: dbName
+      required: true
+      schema:
+        type: string
