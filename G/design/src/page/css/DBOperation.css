@@ -1,0 +1,113 @@
+.DBPage{
+    height: 100%;
+    width: 100%;
+background-image: url("背景2.jpg");
+    overflow: scroll;
+
+}
+.pageSider{
+    overflow: auto;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    z-index: 999;
+    width: 250px!important;
+    max-width: 250px!important;
+    min-width: 250px!important;
+}
+.dbText{
+    color: #f0f2f5;
+    font-size: larger;
+}
+#icon{
+    margin-right: 17px;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+.pageHeader{
+    text-align: center;
+    font-size: x-large;
+    font-weight: bolder;
+    z-index: 1;
+    color: white;
+    background-color: transparent;
+    min-width: 600px;
+}
+.ant-layout-header{
+    /*background-color: #f0f2f5;*/
+    height: 15%;
+    padding: 0!important;
+}
+.dbList{
+    margin-top: 20px;
+    color: white;
+    list-style: none;
+}
+.pageContext{
+    text-align: center;
+    padding-top: 20px;
+    z-index: 1;
+}
+.bodyLayout{
+    height: 100%;
+    width: calc( 100% - 250px );
+    min-width: 600px;
+    margin-left: 250px;
+}
+.ant-input.inputText{
+    width: 60%!important;
+    height: 30% !important;
+}
+.submitButton{
+    margin-top: 30px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+}
+.inputText{
+    height: 40% !important;
+}
+.ant-table-pagination.ant-pagination{
+    display: none;
+}
+/*#menuSon{*/
+/*    display: none!important;*/
+/*}*/
+.headTable{
+    /*background-color: #d9d9d9;*/
+    width: 100px;
+}
+.dbTable{
+text-align: center;
+    margin: 0 auto;
+    background-color: #d9d9d9;
+    height: 200px;
+}
+th{
+padding: 0 10px;
+border: black solid 1px;
+}
+/*td{*/
+/*    padding: 0 10px;*/
+/*}*/
+.tableList{
+    margin-top: 20px;
+    color: white;
+    list-style: none;
+}
+#displayText{
+    display: none;
+}
+.ant-layout{
+    background-color: transparent;
+}
+td{
+    border: black solid 1px;
+    color: black;
+}
+.tableDiv{
+    overflow: auto;
+    width: calc( 100% - 250px );
+    text-align: center;
+    margin: 0 auto;
+    /*height: 200px;*/
+}

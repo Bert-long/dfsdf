@@ -1,0 +1,28 @@
+.apiInput{
+    width: 60%!important;
+    height: 40px!important;
+}
+.alterButton{
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.addButton{
+    margin-right: 20px;
+}
+li{
+    margin-top: 10px;
+    cursor: pointer;
+}
+.addButton{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.deleteButton{
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.addInputUp{
+    width: 60%!important;
+    height: 40px!important;
+}

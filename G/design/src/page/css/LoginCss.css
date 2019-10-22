@@ -1,0 +1,90 @@
+.loginPage {
+    width: 100%;
+    height: 100%;
+    background-image: url("背景2.jpg");
+    overflow: hidden;
+}
+
+.loginHeader {
+    padding-top: 100px;
+    height: 20%;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: x-large;
+    padding-right: 50px;
+}
+
+.loginBody {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    margin-top: 100px;
+    color: white;
+    font-size: large;
+}
+
+.ant-input#user {
+
+}
+
+.ant-input#passWord {
+}
+
+.defaultButton {
+    margin-right: 70px;
+    margin-left: 50px;
+    margin-top: 40px !important;
+}
+
+.ant-radio-wrapper {
+    color: white !important;
+}
+
+.ant-input:focus {
+    border-style: solid;
+    border-width: 1px;
+    border-color: green !important;
+}
+
+.select {
+    width: 100%;
+    border-radius: 4px;
+    height: 32px;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    border: 1px solid #d9d9d9;
+    padding: 4px 11px;
+    margin: 0;
+    font-variant: tabular-nums;
+}
+
+.select:focus {
+    border-style: solid;
+    border-width: 1px;
+    border-color: green !important;
+}
+
+#warnText {
+    visibility: hidden;
+    font-size: small;
+    color: red;
+}
+
+#warnTextPs {
+    visibility: hidden;
+    font-size: small;
+    color: red;
+}
+
+.userName {
+    margin-bottom: 10px !important;
+}
+
+.passWord {
+    margin: 10px 0;
+}
