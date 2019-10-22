@@ -1,0 +1,11 @@
+c3p0，dbcp与druid 三大连接池的区别
+https://blog.csdn.net/diyu122222/article/details/78762280
+
+DBUtils工具类
+https://blog.csdn.net/u012292754/article/details/80164700
+
+JDBC知识点：
+https://www.cnblogs.com/xumaodun/p/4899822.html
+
+大数据处理，批量处理，事务，隔离级别
+https://www.cnblogs.com/qingxinblog/articles/4236410.html
